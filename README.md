@@ -1,1 +1,4 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+# Personal Site (WIP)!
+
+Build w/ Next JS.
+Stying w/ Stiches
