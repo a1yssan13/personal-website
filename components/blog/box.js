@@ -19,7 +19,7 @@ const Box = ({title, date, link, wid, height}) => {
         border: '5px solid', 
         borderRadius: '30px', 
         overflow: 'hidden', 
-        marginTop: '1rem', 
+        marginTop: '0.8rem', 
     })
     return (
         <Link href={link}>

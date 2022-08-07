@@ -6,12 +6,12 @@ import { css, styled } from '../../styles/stitches.config.js'
 import {FiHome} from 'react-icons/fi'
 import React, { useState } from 'react'
 
-const WIDTH = '40rem'
+const WIDTH = '36rem'
 const HEIGHT = '100vh'
-const TYPES = ['16rem', '21rem', '10rem', '14rem', '11rem', '20rem', '17rem', '16rem', '21rem', '10rem', '14rem', '11rem']
+const TYPES = ['15rem', '18rem', '8rem', '14rem', '10rem', '18rem', '15rem', '10rem', '23rem']
 const STARTINGPOSTS = 6
 const INTERVALEXPAND = 6
-const BOXHEIGHT = '15rem'
+const BOXHEIGHT = '13rem'
 
 const Blog = ({ allPostsData }) => {
     
@@ -59,7 +59,7 @@ const Expand = styled('button', {
     border: '5px solid', 
     borderRadius: '30px', 
     overflow: 'hidden', 
-    marginTop: '1rem', 
+    marginTop: '0.8rem', 
     '&:hover': {
         backgroundColor: '$darkest', 
         color: '$background'
@@ -68,7 +68,7 @@ const Expand = styled('button', {
 
 const home = css({
     border: '3px solid',
-    padding: '3px 13px 0px 13px', 
+    padding: '10px 10px 0px 10px', 
     borderRadius: '20px', 
     '&:hover':{
         backgroundColor: '$darkest', 

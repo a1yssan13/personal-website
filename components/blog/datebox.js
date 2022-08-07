@@ -12,20 +12,20 @@ const DateBox = ({ date }) => {
     const year = getYear(dateParsed) 
     const day = getDate(dateParsed).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
     const Day = styled('p', {
-        fontSize: '50px', 
+        fontSize: '40px', 
         color: '$darkest', 
-        margin: '-15px 0', 
+        margin: '-12px 0', 
         padding: '0'
     })
     const Month = styled('p', {
-        fontSize: '33px', 
+        fontSize: '26px', 
         color: '$darkest', 
         margin: '0'
     })
     const Year = styled('p', {
-        fontSize: '30px', 
+        fontSize: '24px', 
         color: '$darkest', 
-        margin: '-3px', 
+        margin: '0px -3px', 
         writingMode: 'vertical-lr'
     })
     const container = css('div', {
@@ -34,7 +34,7 @@ const DateBox = ({ date }) => {
         alignItems: 'center', 
         margin: '20px', 
         padding: '10px 5px 5px 5px', 
-        border: '4px solid', 
+        border: '3.5px solid', 
         borderRadius: '10px', 
     })
     const dateContainer = css('div', {
