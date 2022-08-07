@@ -1,4 +1,19 @@
 import { createStitches } from "@stitches/react";
+const font = { fontSizes: {
+  banner: '53px', 
+  h1: '30px',
+  h2: '23px',
+  h3: '19px', 
+  paragraph: '16px'
+}}
+
+// const old = { fontSizes: {
+//   banner: '70px', 
+//   h1: '40px', 
+//   h2: '30px', 
+//   h3: '25px',
+//   paragraph: '22px'
+// }}
 
 export const { 
   styled, 
@@ -15,7 +30,8 @@ export const {
       medium: '#c5d1e3', 
       background: '#F0efe8',
       darkaccent: '#453e6d'
-    }
+    }, 
+    ...font
   }
  })
 // define the dark theme using the de-constructed function
@@ -26,7 +42,8 @@ export const darkDefault = createTheme({
     medium: '#736aa8', 
     background: '#2f2667',
     darkaccent: '#d5ede2',
-  } 
+  }, 
+  ...font
 })
 
 export const rainLight = createTheme({
@@ -36,7 +53,8 @@ export const rainLight = createTheme({
     medium: '#FFC99F', 
     background: '#D9E9F0',
     darkaccent: '#98AECB'
-  }})
+  }, ...font
+})
 
 export const rainDark = createTheme({
   colors: {
@@ -45,7 +63,7 @@ export const rainDark = createTheme({
     medium: '#91B6B3', 
     background: '#769AA5', 
     darkaccent: '#c5dae3'
-  }
+  }, ...font
 })
 
 export const forestLight = createTheme({ 
@@ -55,7 +73,7 @@ export const forestLight = createTheme({
     medium: '#D19380', 
     background: '#f3dbda',
     darkaccent: '#69917c',
-  } 
+  }, ...font
 })
 
 export const forestDark = createTheme({ 
@@ -65,7 +83,7 @@ export const forestDark = createTheme({
     medium: '#afc5bd', 
     background: '#567869',
     darkaccent: '#e6c2c1',
-  } 
+  }, ...font
 })
 
 export const globalStyles = globalCss({

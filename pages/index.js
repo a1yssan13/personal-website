@@ -140,12 +140,12 @@ const Button=styled('button', {
 })
 const Body = styled('p', {
     color: '$darkest',
-    fontSize: '22px',
+    fontSize: '$paragraph',
     display: 'inline', 
 })
 const Title = styled('h1', {
   color: '$darkest',
-  fontSize: '40px',
+  fontSize: '$h1',
 })
 const Journal = styled('div', {
     display: 'flex',
@@ -162,7 +162,7 @@ const Journal = styled('div', {
     },
     '&.text' : {
       border: 'none', 
-      fontSize: '22px', 
+      fontSize: '$paragraph', 
       margin: '7px', 
       textAlign: 'center'
     },

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const button = css({ 
     color: '$darkest', 
-    fontSize: '22px', 
+    fontSize: '$paragraph', 
     textDecoration: 'underline', 
     display:'inline', 
     '&:hover' : {
@@ -16,13 +16,13 @@ const button = css({
 }) 
 const expanded = css ({
     color: '$darker',
-    fontSize: '22px', 
+    fontSize: '$paragraph', 
     display: 'inline', 
     backgroundColor: '$medium', 
 })
 const body = css({
     color: '$darkest',
-    fontSize: '22px',
+    fontSize: '$paragraph',
     display: 'inline', 
 })
 

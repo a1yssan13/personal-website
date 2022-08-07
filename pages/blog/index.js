@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import { getSortedPostsData } from '../../lib/posts'
 import Link from 'next/link'
-import Box from '../../components/box'
+import Box from '../../components/blog/box'
 import { css, styled } from '../../styles/stitches.config.js'
 import {FiHome} from 'react-icons/fi'
 import React, { useState } from 'react'
 
 const WIDTH = '50rem'
-const HEIGHT = '80vh'
+const HEIGHT = '100vh'
 const TYPES = ['19rem', '28rem', '10rem', '20rem', '16rem', '25rem', '22rem', '16rem', '20rem', '10rem']
 const STARTINGPOSTS = 6
 const INTERVALEXPAND = 6
@@ -46,7 +46,7 @@ const Blog = ({ allPostsData }) => {
 
 const ExpandText = styled('p', {
     width: `10rem`, 
-    fontSize:'80px', 
+    fontSize:'$banner', 
     margin: '20px 30px 0 0', 
     color: 'inherit',
     writingMode: 'vertical-lr'
@@ -76,7 +76,7 @@ const home = css({
 })
 
 const header = css({
-    fontSize: '70px', 
+    fontSize: '$banner', 
     color: '$darkest',
     margin: 'auto', 
     width: WIDTH, 
@@ -86,7 +86,7 @@ const header = css({
     alignItems: 'center'
 })
 const canvas = css({
-    margin: '15vh 0', 
+    margin: '10vh 0', 
     display: 'flex', 
     flexDirection: 'column',
     justifyContent: 'center'

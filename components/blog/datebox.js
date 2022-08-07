@@ -1,4 +1,4 @@
-import { css, styled } from '../styles/stitches.config.js'
+import { css, styled } from '../../styles/stitches.config.js'
 import { parse, getMonth, getYear, getDate } from 'date-fns'
 import React from 'react'
 import PropTypes from 'prop-types'

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { css, styled } from '../styles/stitches.config.js'
+import { css, styled } from '../../styles/stitches.config.js'
 import { format } from 'date-fns'
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 import React from 'react'

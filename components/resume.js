@@ -3,7 +3,7 @@ import { css } from '../styles/stitches.config.js'
 import React from 'react'
 
 const text = css({ 
-  fontSize: '22px', 
+  fontSize: '$header', 
   margin: '7px', 
   textAlign: 'center', 
 }) 

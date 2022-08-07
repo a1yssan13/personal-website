@@ -1,7 +1,7 @@
 import { styled } from '../styles/stitches.config.js'
 
 const Paragraph = styled('p', {
-    fontSize: '22px', 
+    fontSize: '$paragraph', 
     color: '$darkest', 
     margin: '2px', 
     marginBottom: '2vh'
@@ -9,18 +9,18 @@ const Paragraph = styled('p', {
 
 const H1 = styled('h2', {
     color: '$darkest', 
-    fontSize: '40px', 
+    fontSize: '$h1', 
 })
 
 const H2 = styled('h2', {
     color: '$darker', 
-    fontSize: '30px', 
+    fontSize: '$h2', 
     margin: '2px'
 })
 
 const H3 = styled('h3', {
     color: '$darker', 
-    fontSize: '25px', 
+    fontSize: '$h3', 
     margin: '5px'
 })
 
@@ -60,7 +60,7 @@ const Link = styled('a', {
 
 //ordered list 
 const UnorderedList = styled( 'ul', {
-    fontSize: '22px', 
+    fontSize: '$paragraph', 
     color: '$darkest', 
     listStyleType: 'circle',
     '& ul': {
@@ -69,7 +69,7 @@ const UnorderedList = styled( 'ul', {
 })
 
 const OrderedList = styled( 'ol', {
-    fontSize: '22px', 
+    fontSize: '$paragraph', 
     color: '$darkest', 
     listStyleType: 'decimal',
     '& ol': {

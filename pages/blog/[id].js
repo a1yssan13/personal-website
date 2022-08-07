@@ -4,7 +4,7 @@ import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import MDXComponents from '../../components/MDXcomponents'
-import Layout from '../../components/bloglayout'
+import Layout from '../../components/blog/bloglayout'
 import { css, styled } from '@stitches/react'
 import React from 'react'
 
