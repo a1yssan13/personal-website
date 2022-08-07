@@ -6,11 +6,12 @@ import { css, styled } from '../../styles/stitches.config.js'
 import {FiHome} from 'react-icons/fi'
 import React, { useState } from 'react'
 
-const WIDTH = '50rem'
+const WIDTH = '40rem'
 const HEIGHT = '100vh'
-const TYPES = ['19rem', '28rem', '10rem', '20rem', '16rem', '25rem', '22rem', '16rem', '20rem', '10rem']
+const TYPES = ['16rem', '21rem', '10rem', '14rem', '11rem', '20rem', '17rem', '16rem', '21rem', '10rem', '14rem', '11rem']
 const STARTINGPOSTS = 6
 const INTERVALEXPAND = 6
+const BOXHEIGHT = '15rem'
 
 const Blog = ({ allPostsData }) => {
     
@@ -36,7 +37,7 @@ const Blog = ({ allPostsData }) => {
         <div className={layout()}>
             {posts.map(({ id, frontMatter }) => {
                 iter++
-                return (<Box key = {id} title={frontMatter.title} link={`/blog/${id}`} date={frontMatter.date} wid={TYPES[iter % TYPES.length]} height={'18rem'}/>)
+                return (<Box key = {id} title={frontMatter.title} link={`/blog/${id}`} date={frontMatter.date} wid={TYPES[iter % TYPES.length]} height={BOXHEIGHT}/>)
             })}
             {number < allPostsData.length ? <Expand onClick={expand}><ExpandText>More</ExpandText></Expand>: <></>}
         </div>
@@ -54,7 +55,7 @@ const ExpandText = styled('p', {
 const Expand = styled('button', {
     color: '$darkest', 
     width: `10rem`, 
-    height: `18rem`, 
+    height: `${BOXHEIGHT}`, 
     border: '5px solid', 
     borderRadius: '30px', 
     overflow: 'hidden', 

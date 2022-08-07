@@ -99,7 +99,6 @@ const Home = () => {
     </div>
   )
 }
-
 const header = css({
   display: 'flex', 
   alignItems: 'center', 
@@ -113,7 +112,7 @@ const main = css({
     height: '100vh'
 }) 
 const container = css({
-    maxWidth: '50rem',
+    maxWidth: '40rem',
     padding: '0 1rem', 
 })
 const Icons = styled('div', {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, theme } from '../styles/stitches.config.js'
+import { theme } from '../styles/stitches.config.js'
 import boatStyle from './boat.module.css'
 
 const DARKEST = theme.colors.darkest
@@ -8,15 +8,9 @@ const MEDIUM = theme.colors.medium
 const BACKGROUND = theme.colors.background
 const DARKACCENT = theme.colors.darkaccent
 
-const boat = css({
-    width: '300px',
-    margin: '10px',
-})
-
 const Boat = () => {
     return (
-        <div className = {boat()}>
-            <svg strokeMiterlimit="10" style={{fillRule:"nonzero",clipRule:"evenodd",strokeLinecap:"round",strokeLinejoin:"round"}} viewBox="0 0 554 950" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+        <svg width="250" preserveAspectRatio="xMidYMin slice" strokeMiterlimit="10" style={{fillRule:"nonzero",clipRule:"evenodd",strokeLinecap:"round",strokeLinejoin:"round"}} viewBox="0 0 554 950" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             <defs>
                 <path d="M3.1 3.6H549V947H3.1V3.6Z" id="b"/>
                 <path d="M287 4.3s-4.3 57 10.3 92c14.5 35 24.8 29.2 24.8 45s-15.9-1.3-37.2 10.6c-21.4 11.8-14.6 14.7-36.7 27.2-22 12.4-42 21.3-38.7 42 3.3 20.7 29.2 36.5 66.4 63.1 37.3 26.6 43.4 10.7 67.5 38.9 24.2 28 6.4 47.7 29 73.6 22.7 26 80 7.1 78 29-1.9 21.7-16.3 13-32.3 33.6-16 20.6-22.4 23-31.8 48.7-9.5 25.6-12.9 35.5-6 53.7 7 18.2 41.9 1.9 33.7 19-8.2 17.2-54.1 23.5-66.4 49.7-12.3 26.1-43.4 70.3-26.8 87.5 16.7 17.2 52 9.2 69 22.8 16.8 13.6 49.8 19 44.6 42.3-5.3 23.2-33.7-.7-41.8 27.1-8 28 12.3 51 9.4 84.4-2.9 33.5-21 49.5-21 49.5l170.5.5-1.5-471.3-1.4-466.8-261.6-2Z" id="d"/>
@@ -52,11 +46,10 @@ const Boat = () => {
                     <path d="M126.5 700.5s-20.8 29.5-20.4 46.8c.2 6.8 18.8 106 18.8 106l57-9s-15.6-95.7-20.1-107.7c-5.4-14.3-35.3-36-35.3-36Z" fill={BACKGROUND} stroke={DARKEST} strokeLinecap="butt" strokeWidth="4.6"/>
                     <path d="m122.6 725 16-3.1s10.4 6.7 15 19.9c4.8 13.1 7.4 33 7.4 33l-40.5 7.5s-4.6-21-5-35c-.5-13.8 7.1-22.3 7.1-22.3Z" fill={DARKACCENT} stroke={DARKEST} strokeLinecap="butt" strokeWidth="4.6"/>
                     <path className={boatStyle.move} d="m122 791.3 41.4-7.9 5.6 33.5-40.7 7.4-6.4-33Z" fill={DARKACCENT} stroke={DARKEST} strokeLinecap="butt" strokeWidth="4.1"/>
-                    <path className={boatStyle.lines} d="M134 889.3s11-19.9 24.2-20.6a47.5 47.5 0 0 1 26.5 9.2M129.2 916.5s13.6-22.7 29.8-23.8c16.2-1 42.3 10 42.3 10M139 868.4s7.2-5.5 14.4-7.5 19.2 1.7 19.2 1.7M162.2 719.3s7.8 5.8 10.3 18.3a208 208 0 0 1 3.4 22.6M97.7 724.5s-6.3 10.5-6.9 24.8c-.5 14.4 4.7 32.6 4.7 32.6" fill="none" stroke={DARKER} strokeWidth="4.1"/>
+                    <path className={boatStyle.lines} d="M134 889.3s11-19.9 24.2-20.6a47.5 47.5 0 0 1 26.5 9.2M129.2 916.5s13.6-22.7 29.8-23.8c16.2-1 42.3 10 42.3 10M139 868.4s7.2-5.5 14.4-7.5 19.2 1.7 19.2 1.7M162.2 719.3s7.8 5.8 10.3 18.3a208 208 0 0 1 3.4 22.6M97.7 724.5s-6.3 10.5-6.9 24.8c-.5 14.4 4.7 32.6 4.7 32.6" fill="none" stroke={DARKER} strokeidth="4.1"/>
                 </g>     
             </g>
-            </svg>
-        </div>
+        </svg>
     )
 }
 
