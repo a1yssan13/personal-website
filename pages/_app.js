@@ -9,7 +9,7 @@ const App = ({ Component, pageProps }) => {
     return (
     <ThemeProvider
         attribute='class'
-        defaultTheme='system'
+        defaultTheme='light'
         value={{
             light: 'light', 
             dark: darkDefault.className, 
