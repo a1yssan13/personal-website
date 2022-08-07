@@ -1,0 +1,72 @@
+.main {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    height: 100vh;
+}
+.boat {
+    width: 300px;
+    margin: 10px; 
+}
+.container {
+    max-width: 50rem;
+    padding: 0 1rem;
+}
+.icons {
+    display: flex; 
+    align-self: center;
+}
+.contact { 
+    padding: 0 5%; 
+    color: #150861;
+    display: flex; 
+    justify-content: right; 
+    align-content: bottom;
+}
+.bodyText {
+    color: #150861;
+    font-size: 22px; 
+    display: inline; 
+}
+.expanded {
+    color: #736aa8;
+    font-size: 22px; 
+    display: inline; 
+    background-color: #c5d1e3
+}
+.header { 
+    color: #150861;
+    font-size: 40px;
+}
+.button { 
+    color: #150861;
+    font-size: 22px; 
+    text-decoration: underline;
+    display: inline; 
+}
+.button:hover {
+    background-color: #150861;
+    color: #F0efe8; 
+    border-radius: 10%; 
+    text-decoration: none; 
+}
+
+.journal {
+    display: flex; 
+    border: 1.8px solid; 
+    margin: 4px;
+    justify-content: center; 
+    align-items:center; 
+    padding: 3px;
+    border-radius: 10px; 
+    width: fit-content; 
+}
+.journaltext {
+    font-size: 22px; 
+    margin: 7px;
+    text-align: center;
+}
+.journal:hover { 
+    background-color: #150861;
+    color: #F0efe8
+}

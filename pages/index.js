@@ -1,209 +1,171 @@
 import Head from 'next/head'
+import TextButton from '../components/textbutton'
+import Resume from '../components/resume'
+import { DiGithubBadge } from 'react-icons/di'
+import Boat from '../components/boat'
+import { IoMailOpen } from 'react-icons/io5'
+import { IoMdJournal } from 'react-icons/io'
+import { css, styled } from '../styles/stitches.config.js'
+import Link from 'next/link'
+import { useTheme } from 'next-themes'
+import React, { useState } from 'react'
+import Toggle from '../components/toggle'
 
-export default function Home() {
+const Home = () => {
+  const { theme, setTheme } = useTheme()
+  const [dark, setDark] = useState(false)
+  const [themeNum, setThemeNum] = useState(0)
+
+  const themes = ['', 'forest', 'rain']
+  const toggleDark = () => {
+    let string = `${themes[themeNum]}${dark ? 'light' : 'dark'}`
+    setTheme(string)
+    setDark(!dark)
+  }
+  const toggleTheme = () => {
+    console.log(themeNum)
+    let index = (1 + themeNum) % themes.length
+    let string = `${themes[index]}${dark ? 'dark' : 'light'}`
+    setThemeNum(index)
+    setTheme(string)
+  }
   return (
-    <div className="container">
+    <div>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>alyssa nie </title>
+        <link rel="icon" href="/favicon.svg" />
       </Head>
-
-      <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      <main className={main()}>
+        <div>
+          <Boat/>
+        </div>
+        <div className={container()}>
+          <div className={header()}>
+            <Title>
+              hey! i’m alyssa. 
+            </Title>
+            
+            <div>
+              
+              <Toggle handler={toggleDark}/>
+            </div>
+          </div>
+          <Body>
+            I’m an undergrad student at UPenn current in&nbsp;
+          </Body>
+          <TextButton buttonText = {'Philly'} text={'but from north TX'}/>
+          <Body>&nbsp;studying&nbsp;
+          
+          </Body>
+          <TextButton buttonText = {`computer science`} text = {'currently interested in machine learning, but the to-explore tech list is long'} />
+          <Body>
+          &nbsp;and business. I like building </Body>
+          <TextButton buttonText={'things'} text={'mechanical keyboards, clay structures, random stuff'} />
+          <Body>, thinking about self&nbsp;</Body>
+          <TextButton buttonText={'help,'} text={'emphasis on thinking here, the helping part...trying my best'}/>
+          <Body>
+          &nbsp;and taking lots of&nbsp;
+          </Body>
+          <TextButton buttonText={'walks.'} text={'good take: walks hang outs >> coffee shops.'}/>
+          <Body> 
+          &nbsp; Otherwise you can find me reading fictional books/blogs, watching kdramas, or playing board games with friends.&nbsp;
+          </Body>
+          <TextButton buttonText={'Reach'} text={'ig: @alyssan.ie | messenger | alynie@wharton.upenn.edu'}/>
+          <Body>
+          &nbsp;out and hang out!
+          </Body>
+          <Contact>
+            <Link href='/blog'>
+            <Journal> 
+                <IoMdJournal size={'40px'}/>
+              <Journal className='text'>Journal</Journal>
+            </Journal>
+            </Link>
+            <Journal as="a" href={'/resume.pdf'} target="_blank" rel="noreferrer" passHref={true}>
+              <Resume />
+            </Journal>
+            <Icons>
+              <Link href='http://github.com/a1yssan13' passHref={true}>
+                <DiGithubBadge size={45}/> 
+              </Link>
+              <Link href='mailto: alynie@wharton.upenn.edu' passHref={true}>
+                <IoMailOpen size={45}/>
+              </Link>
+            </Icons> 
+            <Button onClick={toggleTheme}></Button>
+          </Contact>
         </div>
       </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel" className="logo" />
-        </a>
-      </footer>
-
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .title,
-        .description {
-          text-align: center;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-
-        .logo {
-          height: 1em;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
     </div>
   )
 }
+
+const header = css({
+  display: 'flex', 
+  alignItems: 'center', 
+  justifyContent: 'space-between', 
+  color: '$darkest'
+})
+const main = css({
+    display: 'flex', 
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh'
+}) 
+const container = css({
+    maxWidth: '50rem',
+    padding: '0 1rem', 
+})
+const Icons = styled('div', {
+  display: 'flex', 
+  alignSelf: 'center', 
+}) 
+const Contact = styled('div', {
+  marginTop: '20px',
+  padding: '0 5%', 
+  color: '$darkest', 
+  display: 'flex',
+  justifyContent: 'right', 
+  alignContent: 'bottom'
+}) 
+const Button=styled('button', {
+  backgroundColor: '$medium', 
+  color: '$darkaccent', 
+  width: '43px', 
+  height: '43px', 
+  border: '5px solid', 
+  borderRadius: '10px', 
+  margin: 'auto 10px', 
+  padding: '0'
+})
+const Body = styled('p', {
+    color: '$darkest',
+    fontSize: '22px',
+    display: 'inline', 
+})
+const Title = styled('h1', {
+  color: '$darkest',
+  fontSize: '40px',
+})
+const Journal = styled('div', {
+    display: 'flex',
+    border: '1.8px solid', 
+    margin: '4px',
+    justifyContent: 'center',
+    alignItems: 'center', 
+    padding: '3px',
+    borderRadius: '10px', 
+    width: 'fit-content',
+    '&:hover': {
+      color: '$background',
+      backgroundColor: '$darkest',
+    },
+    '&.text' : {
+      border: 'none', 
+      fontSize: '22px', 
+      margin: '7px', 
+      textAlign: 'center'
+    },
+})
+
+export default Home

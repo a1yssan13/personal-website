@@ -1,0 +1,40 @@
+@keyframes move-around {
+    0% {
+      transform: translate(10%, 20%) rotate(-3deg);
+    }
+    25% {
+      transform: translate(12%, -20%) rotate(5deg);
+    }
+    50% {
+      transform: translate(0%, -60%);
+    }
+    100% {
+      transform: translate(12%, -100%)
+    }
+  }  
+
+.boat {
+    animation: move-around 200s linear infinite;
+  }
+
+@keyframes wiggle {
+    0% {
+      transform: scale(100%);
+      opacity: 20%
+    }
+    30% {
+      opacity:100%;
+    }
+    70% {
+      transform: scale(105%); 
+      opacity: 30%;
+    }
+    100% {
+      transform: scale(110%);
+      opacity: 0%
+    }
+  }  
+
+.lines {
+    animation: wiggle 4s linear infinite; 
+}
