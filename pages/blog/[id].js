@@ -7,24 +7,30 @@ import MDXComponents from '../../components/MDXcomponents'
 import Layout from '../../components/blog/bloglayout'
 import { css, styled } from '@stitches/react'
 import React from 'react'
+import Head from 'next/head'
 
 const Post = ({ frontMatter, mdxSource }) => {
   return (
-    <>
-      <article className={canvas()}>
+    <div>
+      <Head>
+          <title>blog</title>
+          <link rel="icon" href="/favicon.svg" />
+      </Head>
+      <main className={canvas()}>
         <Layout frontMatter={frontMatter} />
         <Spacer/>
         <div className={layout()}>
           <MDXRemote {...mdxSource} components={{ SyntaxHighlighter, ...MDXComponents }} />
         </div>
-      </article>
-    </>
+      </main>
+    </div>
   )
 }
+const canvas = css({  
+display: 'flex', 
+flexDirection: 'column', 
+justifyContent: 'center',
 
-
-const canvas = css({
-  margin: '15vh 0'
 })
 const Spacer = styled('p', {
   padding: '3px'

@@ -32,7 +32,12 @@ export const {
       darkaccent: '#453e6d'
     }, 
     ...font
-  }
+  }, 
+  media: {
+    bp1: '(min-width: 300px)',
+    bp2: '(min-width: 768px)',
+    bp3: '(min-width: 1024px)',
+  },
  })
 // define the dark theme using the de-constructed function
 export const darkDefault = createTheme({ 

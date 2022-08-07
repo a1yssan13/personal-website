@@ -10,6 +10,8 @@ import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import React, { useState } from 'react'
 import Toggle from '../components/toggle'
+import MediaQuery from 'react-responsive'
+
 
 const Home = () => {
   const { setTheme } = useTheme()
@@ -36,17 +38,15 @@ const Home = () => {
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <main className={main()}>
-        <div>
+        <MediaQuery minWidth={1224}>
           <Boat/>
-        </div>
-        <div className={container()}>
+        </MediaQuery>
+        <Container maxWidth={{'@initial': 'desktop', '@bp1': 'mobile'}}>
           <div className={header()}>
             <Title>
               hey! i’m alyssa. 
             </Title>
-            
             <div>
-              
               <Toggle handler={toggleDark}/>
             </div>
           </div>
@@ -55,7 +55,6 @@ const Home = () => {
           </Body>
           <TextButton buttonText = {'Philly'} text={'but from north TX'}/>
           <Body>&nbsp;studying&nbsp;
-          
           </Body>
           <TextButton buttonText = {`computer science`} text = {'currently interested in machine learning, but the to-explore tech list is long'} />
           <Body>
@@ -75,6 +74,7 @@ const Home = () => {
           &nbsp;out and hang out!
           </Body>
           <Contact>
+            <div className={clickable()}>
             <Link href='/blog'>
             <Journal> 
                 <IoMdJournal size={'40px'}/>
@@ -84,6 +84,7 @@ const Home = () => {
             <Journal as="a" href={'/resume.pdf'} target="_blank" rel="noreferrer" passHref={true}>
               <Resume />
             </Journal>
+            </div>
             <Icons>
               <Link href='http://github.com/a1yssan13' passHref={true}>
                 <DiGithubBadge size={45}/> 
@@ -94,7 +95,7 @@ const Home = () => {
             </Icons> 
             <Button onClick={toggleTheme}></Button>
           </Contact>
-        </div>
+        </Container>
       </main>
     </div>
   )
@@ -111,9 +112,14 @@ const main = css({
     alignItems: 'center',
     height: '100vh'
 }) 
-const container = css({
-    maxWidth: '40rem',
+const Container = styled('div', {
     padding: '0 1rem', 
+    '@bp1': {
+      maxWidth: '20rem'
+    }, 
+    '@bp3': {
+      maxWidth: '40rem',
+    }
 })
 const Icons = styled('div', {
   display: 'flex', 
@@ -121,11 +127,17 @@ const Icons = styled('div', {
 }) 
 const Contact = styled('div', {
   marginTop: '20px',
-  padding: '0 5%', 
   color: '$darkest', 
   display: 'flex',
-  justifyContent: 'right', 
-  alignContent: 'bottom'
+  alignItems: 'bottom', 
+  '@bp1': {
+    justifyContent: 'space-between', 
+    padding: '0', 
+  }, 
+  '@bp3': {
+    justifyContent: 'right', 
+    padding: '0 5%', 
+  }
 }) 
 const Button=styled('button', {
   backgroundColor: '$medium', 
@@ -134,8 +146,13 @@ const Button=styled('button', {
   height: '43px', 
   border: '5px solid', 
   borderRadius: '10px', 
-  margin: 'auto 10px', 
-  padding: '0'
+  padding: '0', 
+  '@bp1': {
+    margin: 'auto 0px'
+  },
+  '@bp3': {
+    margin: 'auto 10px', 
+  }
 })
 const Body = styled('p', {
     color: '$darkest',
@@ -162,9 +179,24 @@ const Journal = styled('div', {
     '&.text' : {
       border: 'none', 
       fontSize: '$paragraph', 
-      margin: '7px', 
-      textAlign: 'center'
-    },
+      textAlign: 'center', 
+      '@bp1': {
+        margin: '0px'
+      }, 
+      '@bp3': {
+        margin: '7px', 
+      }
+    }
 })
-
+const clickable = css({
+  display: 'flex', 
+  '@bp1': {
+    flexDirection: 'column', 
+    alignItems: 'left', 
+    gap: '2px', 
+  }, 
+  '@bp3': {
+    flexDirection: 'row'
+  }
+})
 export default Home

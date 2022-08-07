@@ -47,16 +47,34 @@ const layout = css({
     justifyContent: 'center',
     width: 'fit-content',
     margin: 'auto',
-    color: '$darkest'
+    paddingTop: '10vh',
+    color: '$darkest', 
+    '@bp1' : { 
+        padding: '3rem',
+        paddingTop: '3vh',
+    }, 
+    '@bp3': {
+        alignItems: 'left',
+        paddingTop: '10vh',
+    }
 })
 const Title = styled('h1', {
     color: '$darkest',
     padding: '0',
     margin: '0', 
     marginBottom: '5px', 
-    fontSize: '40px',
     marginTop: '3vh', 
-    width: '50rem',
+    '@bp1' : {
+        width: 'auto', 
+        fontSize: '${h2}', 
+        textAlign: 'center',
+    }, 
+    '@bp3' : {
+        width: '50rem',
+        fontSize: '${h1}',
+        textAlign: 'left',
+    }
+    
 })
 const Subtitle = styled('p', {
     display: 'flex', 
@@ -65,7 +83,13 @@ const Subtitle = styled('p', {
     fontSize: '18px', 
     padding: '0',
     margin: '0', 
-    maxWidth: '50rem',
+    '@bp1' : {
+        width: 'auto', 
+        gap: '10px'
+    }, 
+    '@bp3' : {
+        width: '50rem',
+    }
 })
 
 export default Layout

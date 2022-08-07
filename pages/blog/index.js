@@ -5,9 +5,13 @@ import Box from '../../components/blog/box'
 import { css, styled } from '../../styles/stitches.config.js'
 import {FiHome} from 'react-icons/fi'
 import React, { useState } from 'react'
+import Row from '../../components/blog/row'
+import MediaQuery from 'react-responsive'
 
-const WIDTH = '36rem'
-const HEIGHT = '100vh'
+const DESKWIDTH = '36rem'
+const MOBILEWIDTH = '20rem'
+const DESKHEIGHT = '100vh'
+const MOBILEHEIGHT = '70vh'
 const TYPES = ['15rem', '18rem', '8rem', '14rem', '10rem', '18rem', '15rem', '10rem', '23rem']
 const STARTINGPOSTS = 6
 const INTERVALEXPAND = 6
@@ -25,7 +29,28 @@ const Blog = ({ allPostsData }) => {
             setNumber(index)
         }
     }
-    console.log(allPostsData)
+    const BoxBlogList = ({posts}) => {
+        return (
+            <Layout style='box'>
+                {posts.map(({ id, frontMatter }) => {
+                iter++
+                return (<Box key = {id} title={frontMatter.title} link={`/blog/${id}`} date={frontMatter.date} wid={TYPES[iter % TYPES.length]} height={BOXHEIGHT}/>)
+                })}
+                {number < allPostsData.length ? <Expand onClick={expand}><ExpandText>More</ExpandText></Expand>: <></>}
+            </Layout>
+        )
+    }
+    const RowBlogList = ({posts}) => {
+        return (
+            <Layout style="row">
+                {posts.map(({ id, frontMatter }) => {
+                iter++
+                return (<Row key = {id} title={frontMatter.title} link={`/blog/${id}`} date={frontMatter.date} wid={MOBILEWIDTH} height={BOXHEIGHT}/>)
+                })}
+                {number < allPostsData.length ? <ExpandRow onClick={expand}>MORE</ExpandRow>: <></>}
+            </Layout>
+        )
+    }
     return (
         <div className={canvas()}>
          <h1 className={header()}>
@@ -34,17 +59,30 @@ const Blog = ({ allPostsData }) => {
                  <div className={home()}><FiHome size={60}/></div>
              </Link>
         </h1>
-        <div className={layout()}>
-            {posts.map(({ id, frontMatter }) => {
-                iter++
-                return (<Box key = {id} title={frontMatter.title} link={`/blog/${id}`} date={frontMatter.date} wid={TYPES[iter % TYPES.length]} height={BOXHEIGHT}/>)
-            })}
-            {number < allPostsData.length ? <Expand onClick={expand}><ExpandText>More</ExpandText></Expand>: <></>}
-        </div>
+        <MediaQuery minWidth={1024}>
+          <BoxBlogList posts={posts}/>
+        </MediaQuery>
+        <MediaQuery maxWidth={1024}>
+          <RowBlogList posts={posts}/>
+        </MediaQuery>
         </div>
     )
 }
 
+const ExpandRow = styled('button', {
+    display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        color: '$darker', 
+        width: `${MOBILEWIDTH}`, 
+        '&:hover': {
+            backgroundColor: '$medium', 
+            borderRadius: '20px'
+        },
+        height: '5rem', 
+        fontSize: '$h1', 
+        padding: '10px'
+})
 const ExpandText = styled('p', {
     width: `10rem`, 
     fontSize:'$banner', 
@@ -80,29 +118,30 @@ const header = css({
     fontSize: '$banner', 
     color: '$darkest',
     margin: 'auto', 
-    width: WIDTH, 
     display: 'flex', 
-    justifyContent: 'flex-start', 
     gap: '20px', 
-    alignItems: 'center'
+    alignItems: 'center', 
+    '@bp1': {
+        width: MOBILEWIDTH, 
+        justifyContent: 'center', 
+    }, 
+    '@bp2': {
+        width: DESKWIDTH, 
+        justifyContent: 'flex-start', 
+    }
 })
 const canvas = css({
     margin: '10vh 0', 
     display: 'flex', 
     flexDirection: 'column',
-    justifyContent: 'center'
+    justifyContent: 'center',
 })
 
-const layout = css({
+const Layout = styled('div', {
     margin: 'auto', 
-    width: WIDTH, 
     display: 'flex', 
-    flexFlow: 'row wrap', 
-    justifyContent: 'space-between', 
-    maxHeight: HEIGHT, 
     overflow: 'auto', 
     padding: '10px', 
-    alignItems: 'flex-start', 
     '&::-webkit-scrollbar': {
         background: '$medium',
         borderRadius: '10px',
@@ -113,6 +152,26 @@ const layout = css({
         borderRadius: '10px',
         background: '$darker',
     },
+    variants: {
+        style: {
+            box: {
+                alignItems: 'flex-start', 
+                flexFlow: 'row wrap', 
+                justifyContent: 'space-between', 
+                maxHeight: DESKHEIGHT, 
+                width: DESKWIDTH, 
+            }, 
+            row: {
+                margin: '20px auto',
+                border: '2px dashed $medium', 
+                borderRadius: '20px',
+                flexDirection: 'column', 
+                maxHeight: MOBILEHEIGHT, 
+                paddingRight: '15px',
+                width: MOBILEWIDTH
+            }
+        }, 
+    }
 })
 
 export const getStaticProps = async () => {
