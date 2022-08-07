@@ -2,10 +2,11 @@ import Link from 'next/link'
 import { css, styled } from '../styles/stitches.config.js'
 import { format } from 'date-fns'
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const Layout = ({frontMatter}) => {
-    const {title, date, description, tumbnailUrl, tags} = frontMatter
-    const Text = styled()
+    const {title, date, description} = frontMatter
     return (
         <div className={layout()}>
             <Link href={'/blog'}>
@@ -19,6 +20,15 @@ const Layout = ({frontMatter}) => {
         </div>
     )
 }
+
+Layout.propTypes = {
+    frontMatter: PropTypes.shape({
+        title: PropTypes.string.required, 
+        date: PropTypes.string.required, 
+        description: PropTypes.string
+    })
+}
+
 const DateBlock = styled('p', {
     borderRadius: '10px',
     padding: '2px 15px', 
@@ -56,10 +66,6 @@ const Subtitle = styled('p', {
     padding: '0',
     margin: '0', 
     maxWidth: '50rem',
-})
-
-const block = css({
-
 })
 
 export default Layout

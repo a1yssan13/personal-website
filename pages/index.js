@@ -12,7 +12,7 @@ import React, { useState } from 'react'
 import Toggle from '../components/toggle'
 
 const Home = () => {
-  const { theme, setTheme } = useTheme()
+  const { setTheme } = useTheme()
   const [dark, setDark] = useState(false)
   const [themeNum, setThemeNum] = useState(0)
 

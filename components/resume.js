@@ -1,5 +1,6 @@
 import { BsFillArrowDownRightCircleFill } from 'react-icons/bs'
 import { css } from '../styles/stitches.config.js'
+import React from 'react'
 
 const text = css({ 
   fontSize: '22px', 
@@ -20,7 +21,7 @@ const container = css({
   }
 }) 
 
-const Resume = ({link}) => {
+const Resume = () => {
     return (
       <div className={container()}>
         <BsFillArrowDownRightCircleFill size={26} />

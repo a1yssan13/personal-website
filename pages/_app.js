@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 import '../styles/global.css'
 import { ThemeProvider } from "next-themes"
 import { globalStyles, darkDefault, forestLight, forestDark, rainLight, rainDark } from '../styles/stitches.config'
+import React  from 'react';
 
 const App = ({ Component, pageProps }) => {
     globalStyles()

@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import { getSortedPostsData } from '../../lib/posts'
 import Link from 'next/link'
 import Box from '../../components/box'
 import { css, styled } from '../../styles/stitches.config.js'
 import {FiHome} from 'react-icons/fi'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 const WIDTH = '50rem'
 const HEIGHT = '80vh'
@@ -35,7 +36,7 @@ const Blog = ({ allPostsData }) => {
         <div className={layout()}>
             {posts.map(({ id, frontMatter }) => {
                 iter++
-                return (<Box title={frontMatter.title} link={`/blog/${id}`} date={frontMatter.date} wid={TYPES[iter % TYPES.length]} height={'18rem'}/>)
+                return (<Box key = {id} title={frontMatter.title} link={`/blog/${id}`} date={frontMatter.date} wid={TYPES[iter % TYPES.length]} height={'18rem'}/>)
             })}
             {number < allPostsData.length ? <Expand onClick={expand}><ExpandText>More</ExpandText></Expand>: <></>}
         </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { css } from '../styles/stitches.config.js'
+import PropTypes from 'prop-types'
 
 const button = css({ 
     color: '$darkest', 
@@ -30,14 +31,14 @@ const TextButton = ({ buttonText, text }) => {
     const [style, setStyle] = useState(button())
     const [clicked, setClicked] = useState(false)
 
-    const handleClick = e => { 
+    const handleClick = () => { 
         setExpand(`(${text})`)
         setStyle(body())
         setClicked(true)
     }
     return ( 
     <>
-        <button onClick = {e => handleClick(e)} type = 'button' disabled={clicked} className={style}>
+        <button onClick = {handleClick} type = 'button' disabled={clicked} className={style}>
             {buttonText}
         </button>
         <div className={expanded()}> 
@@ -45,6 +46,11 @@ const TextButton = ({ buttonText, text }) => {
         </div>
     </>
     )
+}
+
+TextButton.propTypes = {
+    buttonText: PropTypes.string.isRequired, 
+    text: PropTypes.string
 }
 
 export default TextButton 

@@ -2,6 +2,8 @@ import Link from 'next/link'
 import DateBox from './datebox'
 import { css, styled } from '../styles/stitches.config.js'
 import boxStyle from './box.module.css'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const Box = ({title, date, link, wid, height}) => {
     const Text = styled('p', {
@@ -27,6 +29,13 @@ const Box = ({title, date, link, wid, height}) => {
             </div>
         </Link>
     )
+}
+Box.propTypes = {
+    title: PropTypes.string, 
+    date: PropTypes.string.isRequired, 
+    link: PropTypes.string.isRequired, 
+    wid: PropTypes.string.isRequired, 
+    height: PropTypes.string.isRequired, 
 }
 
 export default Box 

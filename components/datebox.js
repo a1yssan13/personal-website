@@ -1,5 +1,7 @@
 import { css, styled } from '../styles/stitches.config.js'
 import { parse, getMonth, getYear, getDate } from 'date-fns'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 
 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
@@ -49,6 +51,10 @@ const DateBox = ({ date }) => {
             <Year>{year}</Year>
         </div>
     )
+}
+
+DateBox.propTypes = {
+    date: PropTypes.string.isRequired
 }
 
 export default DateBox
