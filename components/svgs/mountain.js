@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import React from "react";
 import { theme } from '../../styles/stitches.config.js'
 import style from './mountain.module.css'
@@ -224,6 +226,6 @@ const Mountain = ({toggle}) => {
 }
 
 Mountain.propTypes = {
-  toggle: PropTypes.func, 
+  toggle: PropTypes.func.isRequired, 
 }
 export default Mountain

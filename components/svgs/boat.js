@@ -1,4 +1,6 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
+
+import React from 'react'
 import { theme } from '../../styles/stitches.config.js'
 import boatStyle from './boat.module.css'
 import PropTypes from 'prop-types'
@@ -69,7 +71,7 @@ const Boat = ({toggle}) => {
 }
 
 Boat.propTypes = {
-    toggle: PropTypes.func, 
+    toggle: PropTypes.func.isRequired, 
 }
 
 export default Boat

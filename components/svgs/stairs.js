@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import React from "react"
 import { theme } from '../../styles/stitches.config.js'
 import style from './stairs.module.css'
@@ -492,7 +494,7 @@ const Stairs = ({toggle}) => {
 }
 
 Stairs.propTypes = {
-  toggle: PropTypes.func, 
+  toggle: PropTypes.func.isRequired, 
 }
 
 export default Stairs
