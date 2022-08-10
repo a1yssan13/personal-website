@@ -72,4 +72,4 @@ Boat.propTypes = {
     toggle: PropTypes.func, 
 }
 
-export default Boat 
+export default Boat
