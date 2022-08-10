@@ -74,4 +74,4 @@ Boat.propTypes = {
     toggle: PropTypes.func.isRequired, 
 }
 
-export default Boat
+export default Boat 
