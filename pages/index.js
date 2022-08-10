@@ -2,9 +2,7 @@ import Head from 'next/head'
 import TextButton from '../components/textbutton'
 import Resume from '../components/resume'
 import { DiGithubBadge } from 'react-icons/di'
-import Boat from '../components/svgs/boat'
-import Mountain from '../components/svgs/mountain'
-import Stairs from '../components/svgs/stairs'
+import Boat from '../components/boat'
 import { IoMailOpen } from 'react-icons/io5'
 import { IoMdJournal } from 'react-icons/io'
 import { css, styled } from '../styles/stitches.config.js'
@@ -14,16 +12,13 @@ import React, { useState } from 'react'
 import Toggle from '../components/toggle'
 import MediaQuery from 'react-responsive'
 
+
 const Home = () => {
   const { setTheme } = useTheme()
   const [dark, setDark] = useState(false)
   const [themeNum, setThemeNum] = useState(0)
-  const [picture, setPicture] = useState(0)
+
   const themes = ['', 'forest', 'rain']
-  const togglePicture = () => {
-    let index = (1 + picture) % 3
-    setPicture(index) 
-  }
   const toggleDark = () => {
     let string = `${themes[themeNum]}${dark ? 'light' : 'dark'}`
     setTheme(string)
@@ -44,9 +39,7 @@ const Home = () => {
       </Head>
       <main className={main()}>
         <MediaQuery minWidth={1224}>
-          {picture == 2 && <Stairs toggle={togglePicture}/>}
-          {picture == 0 && <Boat toggle={togglePicture}/>}
-          {picture == 1 && <Mountain toggle={togglePicture}/>}
+          <Boat/>
         </MediaQuery>
         <Container maxWidth={{'@initial': 'desktop', '@bp1': 'mobile'}}>
           <div className={header()}>

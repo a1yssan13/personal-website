@@ -1,9 +1,6 @@
-/* eslint-disable react/prop-types */
-
-import React from 'react'
-import { theme } from '../../styles/stitches.config.js'
+import React from 'react';
+import { theme } from '../styles/stitches.config.js'
 import boatStyle from './boat.module.css'
-import PropTypes from 'prop-types'
 
 const DARKEST = theme.colors.darkest
 const DARKER = theme.colors.darker
@@ -11,7 +8,7 @@ const MEDIUM = theme.colors.medium
 const BACKGROUND = theme.colors.background
 const DARKACCENT = theme.colors.darkaccent
 
-const Boat = ({toggle}) => {
+const Boat = () => {
     return (
         <svg width="250" preserveAspectRatio="xMidYMin slice" strokeMiterlimit="10" style={{fillRule:"nonzero",clipRule:"evenodd",strokeLinecap:"round",strokeLinejoin:"round"}} viewBox="0 0 554 950" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             <defs>
@@ -50,28 +47,10 @@ const Boat = ({toggle}) => {
                     <path d="m122.6 725 16-3.1s10.4 6.7 15 19.9c4.8 13.1 7.4 33 7.4 33l-40.5 7.5s-4.6-21-5-35c-.5-13.8 7.1-22.3 7.1-22.3Z" fill={DARKACCENT} stroke={DARKEST} strokeLinecap="butt" strokeWidth="4.6"/>
                     <path className={boatStyle.move} d="m122 791.3 41.4-7.9 5.6 33.5-40.7 7.4-6.4-33Z" fill={DARKACCENT} stroke={DARKEST} strokeLinecap="butt" strokeWidth="4.1"/>
                     <path className={boatStyle.lines} d="M134 889.3s11-19.9 24.2-20.6a47.5 47.5 0 0 1 26.5 9.2M129.2 916.5s13.6-22.7 29.8-23.8c16.2-1 42.3 10 42.3 10M139 868.4s7.2-5.5 14.4-7.5 19.2 1.7 19.2 1.7M162.2 719.3s7.8 5.8 10.3 18.3a208 208 0 0 1 3.4 22.6M97.7 724.5s-6.3 10.5-6.9 24.8c-.5 14.4 4.7 32.6 4.7 32.6" fill="none" stroke={DARKER} strokeidth="4.1"/>
-                </g>
-                <g onClick={toggle}>
-                    <path
-                    fill={MEDIUM} className={'switcher'}
-                    d="M526.538 70.171h-31.981c-5.284 0-9.567-4.284-9.567-9.568V26.697c0-5.284 4.283-9.568 9.567-9.568h31.981c5.284 0 9.568 4.284 9.568 9.568v33.906c0 5.284-4.284 9.568-9.568 9.568z"
-                    ></path>
-                    <path
-                    className={'switcher'}
-                    fill="none"
-                    stroke={DARKEST}
-                    strokeWidth="5.61"
-                    d="M497.92 42.792l18.637-.108 6.41-.037-5.546-9.3 5.479 9.272-4.679 10.263"
-                    ></path> 
-                </g>
-                    
+                </g>     
             </g>
         </svg>
     )
-}
-
-Boat.propTypes = {
-    toggle: PropTypes.func.isRequired, 
 }
 
 export default Boat 
