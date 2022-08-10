@@ -76,6 +76,5 @@
     animation-delay: 2s
 }
 .clusterC {
-    animation: flicker s linear infinite; 
-    animation-delay: 
+    animation: flicker 4s linear infinite; 
 }
