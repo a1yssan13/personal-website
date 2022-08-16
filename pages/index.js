@@ -6,6 +6,7 @@ import Boat from '../components/svgs/boat'
 import Mountain from '../components/svgs/mountain'
 import Stairs from '../components/svgs/stairs'
 import { IoMailOpen } from 'react-icons/io5'
+import BoatMobile from '../components/svgs/boatmobile'
 import { IoMdJournal } from 'react-icons/io'
 import { css, styled } from '../styles/stitches.config.js'
 import Link from 'next/link'
@@ -43,12 +44,14 @@ const Home = () => {
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <main className={main()}>
+        
         <MediaQuery minWidth={1224}>
           {picture == 2 && <Stairs toggle={togglePicture}/>}
           {picture == 0 && <Boat toggle={togglePicture}/>}
           {picture == 1 && <Mountain toggle={togglePicture}/>}
         </MediaQuery>
         <Container maxWidth={{'@initial': 'desktop', '@bp1': 'mobile'}}>
+        
           <div className={header()}>
             <Title>
               hey! i’m alyssa. 
@@ -57,6 +60,9 @@ const Home = () => {
               <Toggle handler={toggleDark}/>
             </div>
           </div>
+          <MediaQuery maxWidth={1000}>
+          <BoatMobile/>
+        </MediaQuery>
           <Body>
             I’m an undergrad student at UPenn current in&nbsp;
           </Body>

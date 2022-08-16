@@ -20,6 +20,7 @@ export const {
   css, 
   getCssText, 
   theme, 
+  keyframes, 
   createTheme, 
   globalCss 
 } = createStitches({ 
@@ -39,6 +40,7 @@ export const {
     bp3: '(min-width: 1024px)',
   },
  })
+
 // define the dark theme using the de-constructed function
 export const darkDefault = createTheme({ 
   colors: { 

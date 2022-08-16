@@ -12,7 +12,6 @@
       transform: translate(12%, -100%)
     }
   }  
-
 .boat {
     animation: move-around 200s linear infinite;
   }

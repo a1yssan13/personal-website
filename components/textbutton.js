@@ -20,6 +20,8 @@ const expanded = css ({
     display: 'inline', 
     backgroundColor: '$medium', 
 })
+
+
 const body = css({
     color: '$darkest',
     fontSize: '$paragraph',
