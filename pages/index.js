@@ -105,8 +105,8 @@ const Home = () => {
               <Link href='mailto: alynie@wharton.upenn.edu' passHref={true}>
                 <IoMailOpen size={45}/>
               </Link>
+              <Button onClick={toggleTheme}></Button>
             </Icons> 
-            <Button onClick={toggleTheme}></Button>
           </Contact>
         </Container>
       </main>
@@ -160,12 +160,7 @@ const Button=styled('button', {
   border: '5px solid', 
   borderRadius: '10px', 
   padding: '0', 
-  '@bp1': {
-    margin: 'auto 0px'
-  },
-  '@bp3': {
-    margin: 'auto 10px', 
-  }
+  margin: 'auto 10px'
 })
 const Body = styled('p', {
     color: '$darkest',
