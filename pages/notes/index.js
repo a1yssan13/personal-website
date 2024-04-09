@@ -1,49 +1,52 @@
 /* eslint-disable react/prop-types */
-import { getSortedPostsData } from '../../lib/posts'
+import { getSortedNotesData } from '../../lib/posts'
 import { css, styled } from '../../styles/stitches.config.js'
 import React from 'react'
-import BlogHome from '../../components/blog/bloghome'
 import Header from '../../components/journal/header'
+import NotesHome from '../../components/noteblock/noteshome'
 
-const Blog = ({ allPostsData }) => {
+const Blog = ({ allNotesData }) => {
     return (
         <div className={canvas()}>
-            <Header/>
+            <Header />
             <Caption>
-            
+                <NotesHome allNotesData={allNotesData} />
             </Caption>
-            <BlogHome allPostsData={allPostsData}/>
+
         </div>
     )
 }
+
 const Caption = styled('p', {
-    margin: 'auto', 
+    margin: 'auto',
     color: '$darkest',
-    display: 'inline', 
-    paddingTop: '1vh', 
+    display: 'inline',
+    paddingTop: '2vh',
     '@bp1': {
-        width: '$mobile', 
-        justifyContent: 'center', 
-    }, 
+        width: '$mobile',
+        justifyContent: 'center',
+    },
     '@bp2': {
-        width: '$desktop', 
-        justifyContent: 'flex-start', 
+        width: '$desktop',
+        justifyContent: 'flex-start',
     }
 })
+
 const canvas = css({
-    margin: '10vh 0', 
-    display: 'flex', 
+    margin: '10vh 0',
+    display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
 })
 
 export const getStaticProps = async () => {
-    const allPostsData = getSortedPostsData()
+    const allNotesData = getSortedNotesData()
     return {
         props: {
-            allPostsData
+            allNotesData
         }
     }
 }
+
 
 export default Blog 

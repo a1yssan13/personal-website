@@ -23,7 +23,7 @@ const Home = () => {
   const themes = ['', 'forest', 'rain']
   const togglePicture = () => {
     let index = (1 + picture) % 3
-    setPicture(index) 
+    setPicture(index)
   }
   const toggleDark = () => {
     let string = `${themes[themeNum]}${dark ? 'light' : 'dark'}`
@@ -44,26 +44,29 @@ const Home = () => {
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <main className={main()}>
-        
         <MediaQuery minWidth={1224}>
-          {picture == 2 && <Stairs toggle={togglePicture}/>}
-          {picture == 0 && <Boat toggle={togglePicture}/>}
-          {picture == 1 && <Mountain toggle={togglePicture}/>}
+          {picture == 2 && <Stairs toggle={togglePicture} />}
+          {picture == 0 && <Boat toggle={togglePicture} />}
+          {picture == 1 && <Mountain toggle={togglePicture} />}
         </MediaQuery>
-        <Container maxWidth={{'@initial': 'desktop', '@bp1': 'mobile'}}>
-        
+        <Container maxWidth={{ '@initial': 'desktop', '@bp1': 'mobile' }}>
           <div className={header()}>
             <Title>
-              hey! i’m alyssa. 
+              Hi! I’m Alyssa Nie.
             </Title>
             <div>
-              <Toggle handler={toggleDark}/>
+              <Toggle handler={toggleDark} />
             </div>
           </div>
           <MediaQuery maxWidth={1000}>
-          <BoatMobile/>
-        </MediaQuery>
+            <BoatMobile />
+          </MediaQuery>
           <Body>
+
+            I come from a suburb in North Texas called Plano, but I'm currently attending college in Pennsylvania where I study Computer Science. Here I document random notes from my life, including stuff from school, the internet, and everything else in between. Say&nbsp;
+          </Body>
+          <TextButton buttonText={'hi! '} text={'@alyssan.ie, messenger, niealyssa@gmail.com'} />
+          {/* <Body>
             I’m an undergrad student at UPenn current in&nbsp;
           </Body>
           <TextButton buttonText = {'Philly'} text={'but from north TX'}/>
@@ -72,41 +75,29 @@ const Home = () => {
           <TextButton buttonText = {`computer science`} text = {'currently interested in machine learning, but the to-explore tech list is long'} />
           <Body>
           &nbsp;and business. I like building </Body>
-          <TextButton buttonText={'things'} text={'mechanical keyboards, clay structures, random stuff'} />
-          <Body>, thinking about self&nbsp;</Body>
-          <TextButton buttonText={'help,'} text={'emphasis on thinking here, the helping part...trying my best'}/>
-          <Body>
-          &nbsp;and taking lots of&nbsp;
-          </Body>
-          <TextButton buttonText={'walks.'} text={'good take: walks hang outs >> coffee shops.'}/>
-          <Body> 
-          &nbsp; Otherwise you can find me reading fictional books/blogs, watching kdramas, or playing board games with friends.&nbsp;
-          </Body>
-          <TextButton buttonText={'Reach'} text={'ig: @alyssan.ie | messenger | alynie@wharton.upenn.edu'}/>
-          <Body>
-          &nbsp;out and hang out!
-          </Body>
+           */}
+          {/* <TextButton buttonText={'Reach'} text={'ig: @alyssan.ie | messenger | alynie@wharton.upenn.edu'}/> */}
           <Contact>
             <div className={clickable()}>
-            <Link href='/blog'>
-            <Journal> 
-                <IoMdJournal size={'40px'}/>
-              <Journal className='text'>Journal</Journal>
-            </Journal>
-            </Link>
-            <Journal as="a" href={'/resume.pdf'} target="_blank" rel="noreferrer" passHref={true}>
-              <Resume />
-            </Journal>
+              <Link href='/notes'>
+                <Journal>
+                  <IoMdJournal size={'40px'} />
+                  <Journal className='text'>Journal</Journal>
+                </Journal>
+              </Link>
+              <Journal as="a" href={'/resume.pdf'} target="_blank" rel="noreferrer" passHref={true}>
+                <Resume />
+              </Journal>
             </div>
             <Icons>
               <Link href='http://github.com/a1yssan13' passHref={true}>
-                <DiGithubBadge size={45}/> 
+                <DiGithubBadge size={45} />
               </Link>
               <Link href='mailto: alynie@wharton.upenn.edu' passHref={true}>
-                <IoMailOpen size={45}/>
+                <IoMailOpen size={45} />
               </Link>
               <Button onClick={toggleTheme}></Button>
-            </Icons> 
+            </Icons>
           </Contact>
         </Container>
       </main>
@@ -114,95 +105,98 @@ const Home = () => {
   )
 }
 const header = css({
-  display: 'flex', 
-  alignItems: 'center', 
-  justifyContent: 'space-between', 
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
   color: '$darkest'
 })
 const main = css({
-    display: 'flex', 
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh'
-}) 
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100vh'
+})
 const Container = styled('div', {
-    padding: '0 1rem', 
-    '@bp1': {
-      maxWidth: '20rem'
-    }, 
-    '@bp3': {
-      maxWidth: '40rem',
-    }
+  padding: '0 1rem',
+  '@bp1': {
+    maxWidth: '20rem'
+  },
+  '@bp3': {
+    maxWidth: '30rem',
+  }
 })
 const Icons = styled('div', {
-  display: 'flex', 
-  alignSelf: 'center', 
-}) 
+  display: 'flex',
+  alignSelf: 'center',
+  cursor: 'pointer',
+})
 const Contact = styled('div', {
   marginTop: '20px',
-  color: '$darkest', 
+  color: '$darkest',
   display: 'flex',
-  alignItems: 'bottom', 
+  alignItems: 'bottom',
   '@bp1': {
-    justifyContent: 'space-between', 
-    padding: '0', 
-  }, 
+    justifyContent: 'space-between',
+    padding: '0',
+  },
   '@bp3': {
-    justifyContent: 'right', 
-    padding: '0 5%', 
+    justifyContent: 'right',
+    padding: '0 5%',
   }
-}) 
-const Button=styled('button', {
-  backgroundColor: '$medium', 
-  color: '$darkaccent', 
-  width: '43px', 
-  height: '43px', 
-  border: '5px solid', 
-  borderRadius: '10px', 
-  padding: '0', 
-  margin: 'auto 10px'
+})
+const Button = styled('button', {
+  backgroundColor: '$medium',
+  color: '$darkaccent',
+  width: '43px',
+  height: '43px',
+  border: '5px solid',
+  borderRadius: '10px',
+  padding: '0',
+  margin: 'auto 10px',
+  cursor: 'pointer',
 })
 const Body = styled('p', {
-    color: '$darkest',
-    fontSize: '$paragraph',
-    display: 'inline', 
+  color: '$darkest',
+  fontSize: '$paragraph',
+  display: 'inline',
 })
 const Title = styled('h1', {
   color: '$darkest',
   fontSize: '$h1',
 })
 const Journal = styled('div', {
-    display: 'flex',
-    border: '1.8px solid', 
-    margin: '4px',
-    justifyContent: 'center',
-    alignItems: 'center', 
-    padding: '3px',
-    borderRadius: '10px', 
-    width: 'fit-content',
-    '&:hover': {
-      color: '$background',
-      backgroundColor: '$darkest',
+  display: 'flex',
+  border: '1.8px solid',
+  margin: '4px',
+  justifyContent: 'center',
+  alignItems: 'center',
+  padding: '3px',
+  borderRadius: '10px',
+  width: 'fit-content',
+  cursor: 'pointer',
+  '&:hover': {
+    color: '$background',
+    backgroundColor: '$darkest',
+  },
+  '&.text': {
+    border: 'none',
+    fontSize: '$paragraph',
+    textAlign: 'center',
+    '@bp1': {
+      margin: '0px'
     },
-    '&.text' : {
-      border: 'none', 
-      fontSize: '$paragraph', 
-      textAlign: 'center', 
-      '@bp1': {
-        margin: '0px'
-      }, 
-      '@bp3': {
-        margin: '7px', 
-      }
+    '@bp3': {
+      margin: '7px',
     }
+  }
 })
 const clickable = css({
-  display: 'flex', 
+  display: 'flex',
   '@bp1': {
-    flexDirection: 'column', 
-    alignItems: 'left', 
-    gap: '2px', 
-  }, 
+    flexDirection: 'column',
+    alignItems: 'left',
+    gap: '2px',
+  },
   '@bp3': {
     flexDirection: 'row'
   }

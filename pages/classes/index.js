@@ -1,21 +1,24 @@
 /* eslint-disable react/prop-types */
-import { getSortedPostsData } from '../../lib/posts'
+import { getSortedReviewsData } from '../../lib/posts'
 import { css, styled } from '../../styles/stitches.config.js'
-import React from 'react'
-import BlogHome from '../../components/blog/bloghome'
+import React, { useState } from 'react'
 import Header from '../../components/journal/header'
+import Table from '../../components/tables/table.js'
 
 const Blog = ({ allPostsData }) => {
     return (
         <div className={canvas()}>
             <Header/>
-            <Caption>
-            
-            </Caption>
-            <BlogHome allPostsData={allPostsData}/>
+                <Caption>
+                These are the classes I took across the four years at Penn. I try to be brutally honest, and 
+                write only from the way I experienced the class - a class I disliked might turn out to be a great class! 
+                
+                </Caption>
+            <Table allPostsData={allPostsData}/>
         </div>
     )
 }
+
 const Caption = styled('p', {
     margin: 'auto', 
     color: '$darkest',
@@ -38,7 +41,7 @@ const canvas = css({
 })
 
 export const getStaticProps = async () => {
-    const allPostsData = getSortedPostsData()
+    const allPostsData = getSortedReviewsData()
     return {
         props: {
             allPostsData

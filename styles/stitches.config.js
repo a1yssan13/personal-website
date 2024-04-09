@@ -25,6 +25,12 @@ export const {
   globalCss 
 } = createStitches({ 
   theme: {
+    sizes: {
+      desktop: '45rem', 
+      mobile: '20rem', 
+      desktoph: '100vh', 
+      mobileh: '70vh',
+    }, 
     colors: {
       darkest: '#2f2667',
       darker: '#736aa8', 

@@ -12,7 +12,7 @@ const DARKACCENT = theme.colors.darkaccent
 const Mountain = ({toggle}) => {
   return (
     <svg
-      width="250" preserveAspectRatio="xMidYMin slice" 
+      width="180" preserveAspectRatio="xMidYMin slice" 
       xmlns="http://www.w3.org/2000/svg"
       xmlnsVectornator="http://vectornator.io"
       xmlnsXlink="http://www.w3.org/1999/xlink"

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { getAllPostsIds, getPostData } from '../../lib/posts'
+import { getAllReviewsIds, getReviewsData } from '../../lib/posts'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import SyntaxHighlighter from 'react-syntax-highlighter'
@@ -8,7 +8,6 @@ import Layout from '../../components/bloglayout'
 import { css, styled } from '@stitches/react'
 import React from 'react'
 import Head from 'next/head'
-
 
 const Post = ({ frontMatter, mdxSource }) => {
   return (
@@ -28,56 +27,27 @@ const Post = ({ frontMatter, mdxSource }) => {
   )
 }
 
-const canvas = css({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-})
+const canvas = css({  
+display: 'flex', 
+flexDirection: 'column', 
+justifyContent: 'center',
 
+})
 const Spacer = styled('p', {
   padding: '3px'
 })
-
 const layout = css({
-  display: 'flex',
-  flexDirection: 'column',
+  display: 'flex', 
+  flexDirection: 'column', 
   alignItems: 'left',
   justifyContent: 'center',
-
   width: 'fit-content',
-  paddingBottom: '0',
-  // display: 'inline', 
-  // flexDirection: 'column', 
-  // alignItems: 'left',
-  // justifyContent: 'center',
-  // width: 'fit-content',
   margin: 'auto',
-  '@bp1': {
-    maxWidth: '$mobile',
-  },
-  '@bp2': {
-    maxWidth: '$desktop',
-  }
-  // maxWidth: '50rem'
-
-})
-
-const Caption = styled('p', {
-  margin: 'auto',
-  color: '$darkest',
-  display: 'inline',
-  '@bp1': {
-    width: '$mobile',
-    justifyContent: 'center',
-  },
-  '@bp2': {
-    width: '$desktop',
-    justifyContent: 'flex-start',
-  }
+  maxWidth: '50rem'
 })
 
 export async function getStaticPaths() {
-  const paths = getAllPostsIds()
+  const paths = getAllReviewsIds()
   return {
     paths,
     fallback: false,
@@ -85,14 +55,14 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps = async ({ params }) => {
-  const { frontMatter, content } = getPostData(params.id)
-  const mdxSource = await serialize(content)
-  return {
-    props: {
-      frontMatter,
-      mdxSource
-    },
-  }
+    const {frontMatter, content} = getReviewsData(params.id)
+    const mdxSource = await serialize(content)
+    return {
+      props: {
+        frontMatter, 
+        mdxSource
+      },
+    }
 }
 
 export default Post 

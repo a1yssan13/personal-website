@@ -8,18 +8,21 @@ import PropTypes from 'prop-types'
 const Box = ({title, date, link, wid, height}) => {
     const Text = styled('p', {
         width: `${wid}`, 
-        fontSize:'$h1', 
+        fontSize:'$banner', 
         margin: '-20px 30px 0 0', 
         color: '$medium',
+        fontWeight: '300', 
+        lineHeight: '.8'
     })
     const block = css('div', {
+        cursor: 'pointer', 
         color: '$darkest', 
         width: `${wid}`, 
         height: `${height}`, 
         border: '5px solid', 
         borderRadius: '30px', 
         overflow: 'hidden', 
-        marginTop: '0.8rem', 
+        marginTop: '1.2rem', 
     })
     return (
         <Link href={link}>

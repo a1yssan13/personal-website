@@ -14,18 +14,19 @@ const DateBox = ({ date }) => {
     const Day = styled('p', {
         fontSize: '40px', 
         color: '$darkest', 
-        margin: '-12px 0', 
+        margin: '-20px 0', 
         padding: '0'
     })
     const Month = styled('p', {
         fontSize: '26px', 
         color: '$darkest', 
-        margin: '0'
+        margin: '0', 
+        fontWeight: '500'
     })
     const Year = styled('p', {
-        fontSize: '24px', 
+        fontSize: '26px', 
         color: '$darkest', 
-        margin: '0px -3px', 
+        margin: '-10px -6px 0 -6px', 
         writingMode: 'vertical-lr'
     })
     const container = css('div', {
@@ -38,6 +39,7 @@ const DateBox = ({ date }) => {
         borderRadius: '10px', 
     })
     const dateContainer = css('div', {
+        margin: '0px', 
         display: 'flex',
         flexDirection: 'column',  
         justifyContent: 'center',

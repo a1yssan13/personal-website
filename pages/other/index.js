@@ -1,22 +1,31 @@
 /* eslint-disable react/prop-types */
-import { getSortedPostsData } from '../../lib/posts'
 import { css, styled } from '../../styles/stitches.config.js'
 import React from 'react'
-import BlogHome from '../../components/blog/bloghome'
 import Header from '../../components/journal/header'
 
-const Blog = ({ allPostsData }) => {
+const Blog = () => {
     return (
         <div className={canvas()}>
             <Header/>
             <Caption>
             
+            Here are some of my other hobbies & interests: 
+
+            Reviews here: 
+
+
+            Mechanical Keyboard build here: 
+
+
+    
+
+
             </Caption>
-            <BlogHome allPostsData={allPostsData}/>
         </div>
     )
 }
-const Caption = styled('p', {
+
+const Caption = styled('div', {
     margin: 'auto', 
     color: '$darkest',
     display: 'inline', 
@@ -36,14 +45,5 @@ const canvas = css({
     flexDirection: 'column',
     justifyContent: 'center',
 })
-
-export const getStaticProps = async () => {
-    const allPostsData = getSortedPostsData()
-    return {
-        props: {
-            allPostsData
-        }
-    }
-}
 
 export default Blog 

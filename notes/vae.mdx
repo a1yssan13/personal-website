@@ -1,0 +1,162 @@
+---
+title: "Variational Autoencoders"
+date: "2022-03-18"
+excerpt: "Brief notes on them."
+
+---
+export const hi = 1; 
+
+
+
+
+## What are Variational Autoencoders?
+
+These notes cover the problem VAEs aim to solve, and how VAEs are used during inference time. Then, it goes through the training process of VAEs, deriving the loss function used. Finally, we end with several notes on the downsides of VAEs and different follow-up modifications. 
+
+## Problem Set-up 
+
+We have a dataset $X$ with $N$ data points $X = \{x^{(i)}\}_{i=1}^N$. We think each data point comes from a certain probability distribution $p(x)$. Behind the directly observable dataset, we speculate there's a hidden factor $z$ that we can't see, which helps to explain why each $x$ is the way it is. This "latent variable" $z$ comes from its own probability distribution, or $p_{\theta}(z)$. We believe each $x$ is made based on $z$ such that $x$ is sampled from the conditional probability $x \sim p(x | z)$, but we don't actually know what $z$ is or its details.
+
+**Goal**: We want to learn a model to approximate our underlying distribution $p_\theta(x)$, and use it to generate new samples. We want these samples to be as "realistic" as possible, ideally indifferentiable from our training data. 
+
+**Assumptions** VAE makes several assumptions (which may be erroneous as shown later) about the nature of these distributions. First, we assume that our prior, or the distribution that latent $z$ is drawn from is the unit normal distribution, $p_\theta(z) = \mathcal{N}(z; 0, I)$. We also assume that the posterior, $p(x | z)$ is a Gaussian distriution, parametrized by $\mu, \sigma$. Our model $g_\theta$ is the "generator". It takes our latent and finds our 
+
+<figure>
+<Figure/>
+</figure>
+
+**Inference** How do we sample images from our model? We sample $z$ from the unit normal. Passing in our sample latent $z$ into our trained mdoel $g_\theta$, we get the mean $\mu$ of our posterior distribution. We can sample our image from this distribution. 
+
+# Training the VAE 
+
+Say that we parametrize our model with parameters $$\theta$$. Given these parameters, we want to maximize the probability of our dataset $X$. In particular, we want to maximize the probability of the joint probability of drawing each of our datapoints: 
+
+```math
+max_{\theta} p(\{x_i\}_{i=1}^n; \theta)
+
+```
+
+Since $p({x_i}) = \int_{z} p(z)p(x_i|z)$. Moreover, we know that $p(z)$ follows the multivariate unit distribution so $N(0, 1) = \frac{1}{(2\pi)^{r/2}}exp(-\frac{||z||^2}{2})$. We know that $p(x_i|z)$ also follows a normal distribution, given by $\mathcal{N}(g_\theta(z), \sigma^2I) \propto exp(-\frac{||x - g_\theta(z)||^2}{2\sigma^2})$. Overall, evaluating this over all possible $z$ is very computationally difficult, so we try an indirect way to maximize our joint likelihood. 
+
+## ELBO 
+Instead, rather than directly maximizing the log-likelihood, we use the "Evidence Lower Bound", or known as ELBO. Mathematically, $p(x)$ can be written as: 
+
+
+```math
+p(x) = \frac{p(x, z)}{p(z|x)}
+
+```
+<Details> 
+<Summary> Rearranging Conditional Probability </Summary> 
+
+```math 
+p(z | x) = \frac{p(x, z)}{p(x)}
+```
+</Details>
+
+
+Indeed, our ELBO bound is, which is mathematically derived here.  
+
+```math
+\log p(x) \geq \mathbb{E}_{z \sim q_\phi(z | x)} \left[ \log \frac{p(x, z)}{q_\phi(z | x)} \right]
+```
+
+<Details>
+<Summary>Proof of ELBO Bound </Summary>
+
+```math
+\begin{align}
+\log p(x) &= \log \int p(x, z) \, dz \tag{"1"}  \\
+&= \log \int \frac{p(x, z)q_\phi(z | x)}{q_\phi(z | x)} \, dz \tag{2} \\
+&= \log \mathbb{E}_{z \sim q_\phi(z | x)} \left[ \frac{p(x, z)}{q_\phi(z | x)} \right] \tag{3} \\
+\tag{4} &\geq \mathbb{E}_{z \sim q_\phi(z | x)} \left[ \log \frac{p(x, z)}{q_\phi(z | x)} \right]
+
+\end{align}
+```
+The last inequality is the result of applying Jensen's Inequality (add link). 
+
+</Details>
+
+Intuitively, we can think of $q_\phi(z|x)$ to be our best estimate of $p(z|x)$. The closer it is to our true estimate, the closer our bound is to $log p(x)$. Thus, by maximizing $ \mathbb{E}_{q_\phi(z|x)}[\frac{p(x, z)}{q_\phi(z|x)}]$, we can move our guess $q_\phi(z | x)$ to the true posterior $p(z|x)$. 
+
+The ELBO gives us a very helpful bound! Let's try to rewrite it.
+
+```math
+\begin{align*}
+\mathbb{E}_{z \sim q_\phi(z | x)} \left[ \log \frac{p(x, z)}{q_\phi(z | x)} \right] &= \mathbb{E}_{z \sim q_\phi(z | x)} \left[ \log \frac{p(x | z) p(z)}{q_\phi(z | x)} \right] \\
+&= \mathbb{E}_{z \sim q_\phi(z | x)} \left[ \log p(x | z) \right] + \mathbb{E}_{z \sim q_\phi(z | x)} \left[ \log \frac{p(z)}{q_\phi(z | x)} \right] \\ 
+&=  \underbrace{\mathbb{E}_{z \sim q_\phi(z | x)} \left[ \log p(x | z) \right]}_{\text{reconstruction}} + \underbrace{\mathbb{E}_{z \sim q_\phi(z | x)} \left[ \log \frac{p(z)}{q_\phi(z | x)} \right]}_{\text{prior matching}} \\ 
+\end{align*}
+```
+
+Maximizing our ELBO is equivalent to maximizing the reconstruction term, and minimizing the prior matching term.
+
+**How do actually calculate this bound?** 
+
+We can choose a distribution $q_\phi(z | x)$, such that this distribution is our best guess of $p(z|x)$. This is known as the "encoder", and a popular choice is the multivariate Gaussian $q_\phi(z | x) \sim \mathcal{N}(f_\phi(x), \sigma^2I)$. 
+
+
+[Insert picture of encoder here]
+
+So our objective becomes: 
+```math
+\begin{align*}
+\max_{\theta, \phi} \sum_{i=1}^n \mathbb E_{\mathbf{Z} \sim q_\phi(\mathbf{z}|\mathbf{x}_i)} \left[\log \propto \exp (\frac{-||\mathbf{x}_i-g_\theta(\mathbf{z})||^2}{2\sigma^2}) 
+- \left(\log \propto \exp (\frac{-||\mathbf{z}-f_\phi(\mathbf{x}_i)||^2}{2\sigma^2}) - \log p(\mathbf{z})\right) 
++ C\right]
+\end{align*}
+```
+We can discard the term $\log p(x)$ since it does not depend on $\phi, \theta$, which are the parameters we are optimizing. Log and exponent cancel out, leading to: 
+
+```math
+\begin{align*}
+\max_{\theta, \phi} \sum_{i=1}^n \mathbb E_{\mathbf{Z} \sim q_\phi(\mathbf{z}|\mathbf{x}_i)} \left[-\frac{||\mathbf{x}_i-g_\theta(\mathbf{z})||^2}{2\sigma^2} 
++\frac{||\mathbf{z}-f_\phi(\mathbf{x}_i)||^2}{2\sigma^2} + C'\right]
+\end{align*}
+```
+
+To train our model, we can use Stochastic Gradient Descent. 
+
+**Optimizing $\theta$**: 
+
+This is easy to calculate. Only the first term has a dependence on $\theta$. 
+
+```math 
+
+\nabla_\theta =  \sum_{i=1}^n \mathbb E_{\mathbf{Z} \sim q_\phi(\mathbf{z}|\mathbf{x}_i)} \left[ - \nabla_\theta(\frac{||\mathbf{x}_i-g_\theta(\mathbf{z})||^2}{2\sigma^2}) \right]
+```
+
+**Optimizing $\phi$**: 
+This is a tad more tricky. Since our expectation has a dependence on $q_\phi(z | x_i)$, we cannot directly just take the gradient of our objective. Instead, we use the reparametization trick. 
+
+## Reparametization Trick 
+
+Since $q_\phi$ is, as defined, a normal distribution, we can rewrite a sample as follows,
+
+```math 
+z = \mu + \epsilon \Sigma^{1/2}
+```
+
+where $\mu$ and $\Sigma$ are learnable parameters, and $\epsilon \sim \mathcal{N}(0, 1)$.Thus, we can now find the gradient update step with respect to $\phi$. 
+
+```math 
+\begin{align*}
+\nabla_\theta =  \sum_{i=1}^n \mathbb E_{\epsilon \sim \mathcal{N(0, I)}} \left[ \nabla_{\phi} (\frac{||\overbrace{\mathbf{\mu} + \varepsilon \Sigma^\frac{1}{2}}^{\text{plug z in}} - f_\phi(\mathbf{x}_i)||^2}{2\sigma^2}) \right]
+\end{align*}
+```
+## Note on the Gaussian Assumption 
+
+Earlier, we stated that VAEs make several assumptions. VAEs tend to produce blurry samples.  
+Why can we assume that the prior distribution is a Normal distribution? 
+
+Any distribution can be mapped into any other distribution by a sufficiently complicated map. 
+
+```
+
+def python 
+
+```
+
+
+# Citations & References
+

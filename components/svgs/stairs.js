@@ -9,10 +9,10 @@ const MEDIUM = theme.colors.medium
 const BACKGROUND = theme.colors.background
 const DARKACCENT = theme.colors.darkaccent
 
-const Stairs = ({toggle}) => {
+const Stairs = ({ toggle }) => {
   return (
     <svg
-      width="250" preserveAspectRatio="xMidYMin slice" 
+      width="180" preserveAspectRatio="xMidYMin slice"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsVectornator="http://vectornator.io"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -474,17 +474,17 @@ const Stairs = ({toggle}) => {
           xlinkHref="#G"
         ></use>
         <g onClick={toggle}>
-            <path
+          <path
             fill={MEDIUM} className={'switcher'}
             d="M526.538 70.171h-31.981c-5.284 0-9.567-4.284-9.567-9.568V26.697c0-5.284 4.283-9.568 9.567-9.568h31.981c5.284 0 9.568 4.284 9.568 9.568v33.906c0 5.284-4.284 9.568-9.568 9.568z"
-            ></path>
-            <path
+          ></path>
+          <path
             className={'switcher'}
             fill="none"
             stroke={DARKEST}
             strokeWidth="5.61"
             d="M497.92 42.792l18.637-.108 6.41-.037-5.546-9.3 5.479 9.272-4.679 10.263"
-            ></path> 
+          ></path>
         </g>
       </g>
     </svg>
@@ -492,7 +492,7 @@ const Stairs = ({toggle}) => {
 }
 
 Stairs.propTypes = {
-  toggle: PropTypes.func, 
+  toggle: PropTypes.func,
 }
 
 export default Stairs

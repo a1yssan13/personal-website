@@ -19,8 +19,11 @@
     "react-icons": "^4.4.0",
     "react-responsive": "^9.0.0-beta.10",
     "react-syntax-highlighter": "^15.5.0",
+    "rehype-katex": "^7.0.0",
     "remark": "^14.0.2",
+    "remark-gfm": "^4.0.0",
     "remark-html": "^15.0.1",
+    "remark-math": "^6.0.0",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
